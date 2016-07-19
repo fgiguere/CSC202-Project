@@ -8,7 +8,9 @@ import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
+
+import utils.LinkedListStack;
+//import utils.OrderedList;
 
 public class LoginJavaFXView extends Application {
 
@@ -23,7 +25,7 @@ public class LoginJavaFXView extends Application {
 
     public void loadUserDB() {
         try {
-            UserDB.setUsers((ArrayList<User>)UserIO.readUsers());
+            UserDB.setUsers((LinkedListStack) UserIO.readUsers());
         } catch (IOException e) {
             System.err.print("Failed to open/read users.dat file.");
         } catch (ClassNotFoundException e) {

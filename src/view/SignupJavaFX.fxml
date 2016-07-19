@@ -140,6 +140,7 @@
             <Insets right="20.0" />
          </GridPane.margin>
       </TextField>
+      <Button fx:id="browse" mnemonicParsing="false" onMouseClicked="#browseFiles" text="Browse" GridPane.columnIndex="1" GridPane.rowIndex="8" />
 
    </children>
 </GridPane>

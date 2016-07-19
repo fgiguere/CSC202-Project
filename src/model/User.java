@@ -72,4 +72,17 @@ public class User extends Person implements Serializable {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
+    public boolean equals(User user) {
+        return (this.userName.equals(user.getUserName()));
+    }
+
+    public int compareTo(User user) {
+        return (this.userName.compareTo(user.getUserName()));
+    }
+
+    public String toString() {
+        return "Username: " + this.userName;
+    }
+
 }
