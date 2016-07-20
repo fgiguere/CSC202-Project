@@ -1,8 +1,13 @@
 package utils;
 
 /**
- * Created by faith on 7/13/16.
+ * Interface for LinkedListStack
  */
 public interface ILinkedListStack<T> extends IStack<T> {
+
+    /**
+     *
+     * @param element T
+     */
     void push(T element);
 }

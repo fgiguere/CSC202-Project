@@ -3,22 +3,32 @@ package utils;
 import Exceptions.IndexOutOfBoundsException;
 
 /**
- * Created by faith on 7/11/16.
+ * LinkedListIndexedList
  */
 
-public class LinkedListIndexedList<T> /*implements IIndexedList<T> */{ /*
+public class LinkedListIndexedList<T> implements IIndexedList<T> {
     LinkedListNode <T> head = null;
     LinkedListNode <T> tail = null;
-    LinkedListNode <T> curNode = null;
+    LinkedListNode <T> currentNode = null;
 
-    @Override
+    /**
+     *
+     * @param element T
+     * @param index int
+     * @throws IndexOutOfBoundsException
+     */
+   @Override
     public void add(T element, int index) throws IndexOutOfBoundsException {
-        reset();
-        for(int i = 0; i < index; i++) {
-            getNext();
+        LinkedListNode <T> curNode = head;
+        if(isEmpty()) {
+            LinkedListNode <T> newNode = new LinkedListNode<T>(element);
+            head = newNode;
+        }
+        for(int i = 0; i < index+1; i++) {
             if(curNode == null) {
                 throw new IndexOutOfBoundsException("Unable to remove, index out of bounds.");
             }
+            curNode = curNode.getPointer();
         }
         LinkedListNode <T> newNode = new LinkedListNode<T>(element);
 
@@ -26,14 +36,21 @@ public class LinkedListIndexedList<T> /*implements IIndexedList<T> */{ /*
         curNode.setPointer(newNode);
     }
 
-    @Override
+    /**
+     *
+     * @param element T
+     * @param index int
+     * @return T
+     * @throws IndexOutOfBoundsException
+     */
+   @Override
     public T set(T element, int index) throws IndexOutOfBoundsException {
-        reset();
+       LinkedListNode <T> curNode = head;
         for(int i = 0; i < index; i++) {
-            getNext();
             if(curNode == null) {
                 throw new IndexOutOfBoundsException("Unable to remove, index out of bounds.");
             }
+            curNode = curNode.getPointer();
         }
         LinkedListNode <T> newNode = new LinkedListNode<T>(element);
 
@@ -42,11 +59,17 @@ public class LinkedListIndexedList<T> /*implements IIndexedList<T> */{ /*
         return element;
     }
 
-    @Override
+    /**
+     *
+     * @param index int
+     * @return T
+     * @throws IndexOutOfBoundsException
+     */
+   @Override
     public T get(int index) throws IndexOutOfBoundsException {
-        reset();
+        LinkedListNode <T> curNode = head;
         for(int i = 0; i < index; i++) {
-            getNext();
+            curNode = curNode.getPointer();
             if(curNode == null) {
                 throw new IndexOutOfBoundsException("Unable to remove, index out of bounds.");
             }
@@ -54,11 +77,17 @@ public class LinkedListIndexedList<T> /*implements IIndexedList<T> */{ /*
         return (T) curNode.getPointer().getElement();
     }
 
-    @Override
+    /**
+     *
+     * @param index int
+     * @return T
+     * @throws IndexOutOfBoundsException
+     */
+   @Override
     public T remove(int index) throws IndexOutOfBoundsException {
-        reset();
+        LinkedListNode <T> curNode = head;
         for(int i = 0; i < index; i++) {
-            getNext();
+            curNode = curNode.getPointer();
             if(curNode == null) {
                 throw new IndexOutOfBoundsException("Unable to remove, index out of bounds.");
             }
@@ -70,34 +99,96 @@ public class LinkedListIndexedList<T> /*implements IIndexedList<T> */{ /*
 
     }
 
+    /**
+     *
+     * @param element T
+     * @return int
+     */
     @Override
     public int indexOf(T element) {
-        reset();
+        LinkedListNode <T> curNode = head;
         int index = 0;
         while(curNode != null) {
-            if(getNext() == element) {
+            curNode = curNode.getPointer();
+            if(curNode.getElement() == element) {
                 return index;
             }
         }
         return -1;
     }
 
+    /**
+     *
+     * @param element T
+     */
     @Override
     public void add(T element) {
+        LinkedListNode <T> curNode = head;
 
+        if(isEmpty()) {
+            LinkedListNode newNode = new LinkedListNode(element);
+            head = newNode;
+            return;
+        }
+
+        while(curNode.getPointer() != null) {
+            curNode = curNode.getPointer();
+        }
+
+        LinkedListNode <T> newNode = new LinkedListNode<T>(element);
+
+        curNode.setPointer(newNode);
     }
 
-    @Override
-    public T remove(T element) {
-        return null;
-    }
+    /**
+     *
+     * @param element T
+     * @return boolean
+     */
+   @Override
+    public boolean remove(T element) {
+       LinkedListNode <T> curNode = head;
 
-    @Override
-    public boolean contains(T element) {
+       if(isEmpty()) {
+           return false;
+       }
+       while(curNode.getPointer() != null) {
+           if(curNode.getPointer().getElement().equals(element)) {
+               curNode.setPointer(curNode.getPointer().getPointer());
+               return true;
+           }
+           curNode = curNode.getPointer();
+       }
         return false;
     }
 
+    /**
+     *
+     * @param element T
+     * @return boolean
+     */
     @Override
+    public boolean contains(T element) {
+        LinkedListNode <T> curNode = head;
+
+        if(isEmpty()) {
+            return false;
+        }
+
+        while(curNode.getPointer() != null) {
+            if(curNode.getElement().equals(element)) {
+                return true;
+            }
+            curNode = curNode.getPointer();
+        }
+        return false;
+    }
+
+    /**
+     *
+     * @return boolean
+     */
+   @Override
     public boolean isEmpty() {
         if(head == null) {
             return true;
@@ -105,19 +196,38 @@ public class LinkedListIndexedList<T> /*implements IIndexedList<T> */{ /*
         return false;
     }
 
-    @Override
+    /**
+     *
+     * @return int
+     */
+   @Override
     public int size() {
-        return 0;
+       LinkedListNode <T> curNode = head;
+       if(curNode == null) {
+           return 0;
+       }
+       int size = 1;
+
+       while(curNode.getPointer() != null) {
+           size++;
+           curNode = curNode.getPointer();
+       }
+       return size;
     }
+
 
     @Override
     public void reset() {
-        curNode = head;
+        currentNode = head;
     }
 
+    /**
+     *
+     * @return T
+     */
     @Override
     public T getNext() {
-        curNode = curNode.getPointer();
-        return curNode.getElement();
-    } */
+        currentNode = currentNode.getPointer();
+        return currentNode.getElement();
+    }
 }

@@ -1,10 +1,15 @@
 package utils;
 
 /**
- * Created by faith on 7/13/16.
+ * Interface for LinkedListQueue
  */
 public interface ILinkedListQueue <T> extends IQueue <T> {
-        void enqueue (T element);
+
+    /**
+     *
+     * @param element T
+     */
+    void enqueue (T element);
 
 }
 

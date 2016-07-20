@@ -1,29 +1,66 @@
 package utils;
 
-//Extends IList with methods specific to indexed lists.
+/**
+ * Interface for IndexedList, extends IList
+ */
 
 import Exceptions.IndexOutOfBoundsException;
 
+
 public interface IIndexedList <T> extends IList<T> {
+
+    /**
+     *
+     * @param element T
+     * @param index int
+     * @throws IndexOutOfBoundsException
+     */
     void add (T element, int index) throws IndexOutOfBoundsException;
-    //Throws IndexOutOfBoundsException if passed an index argument < 0 or > size().
-    //Otherwise adds element to list at position index.
-    //All other elements at that position or higher have 1 added to their index.
 
+    /**
+     *
+     * @param element T
+     * @param index int
+     * @return T
+     * @throws IndexOutOfBoundsException
+     */
     T set(T element, int index) throws IndexOutOfBoundsException;
-    //Throws IndexOutOfBoundsException if passed an index argument < 0 or >= size().
-    //Otherwise replaces element on the list at the position index and returns the replaced element.
 
+    /**
+     *
+     * @param index int
+     * @return T
+     * @throws IndexOutOfBoundsException
+     */
     T get(int index) throws IndexOutOfBoundsException;
-    //Throws IndexOutOfBoundsException if passed an index argument < 0 or >= size().
-    //Otherwise returns the element at this index.
 
+    /**
+     *
+     * @param index int
+     * @return T
+     * @throws IndexOutOfBoundsException
+     */
     T remove(int index) throws IndexOutOfBoundsException;
-    //Throws IndexOutOfBoundsException if passed an index argument < 0 or >= size().
-    //Otherwise removes the element at the position index and returns the element.
-    //All other elements at higher positions than the removed element have 1 subtracted from their index.
 
+    /**
+     *
+     * @param element T
+     * @return int
+     */
     int indexOf(T element);
-    //If the list contains an element e such that e.equals(element) then returns the index of the first such element.
-    //Otherwise returns -1.
+
+    /**
+     *
+     * @param element T
+     * @return boolean
+     */
+    boolean remove(T element);
+
+    /**
+     *
+     * @param element T
+     * @return boolean
+     */
+    boolean contains(T element);
+
 }

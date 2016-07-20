@@ -1,18 +1,22 @@
 package utils;
 import model.User;
+import java.io.Serializable;
 
 /**
- * Created by faith on 7/17/16.
+ * LinkedListOrderedList
  */
 
-public class LinkedListOrderedList implements IList <User> {
+public class LinkedListOrderedList implements IOrderedList, Serializable {
 
     LinkedListNode <User> head = null;
-    LinkedListNode <User> curNode = null;
+    LinkedListNode <User> currentNode = null;
 
+    /**
+     *
+     * @param newUser User
+     */
     @Override
     public void add(User newUser) {
-        reset();
         LinkedListNode <User> newNode = new LinkedListNode(newUser);
 
         if(isEmpty()) {
@@ -20,13 +24,15 @@ public class LinkedListOrderedList implements IList <User> {
             return;
         }
 
-        if(head.getElement().compareTo(newUser) < 0) {
+        if(head.getElement().compareTo(newUser) > 0) {
             newNode.setPointer(head);
             head = newNode;
             return;
         }
 
-        if (curNode.getElement().compareTo(newUser) < 0) {
+        LinkedListNode <User> curNode = head;
+
+        if (curNode.getElement().compareTo(newUser) > 0) {
             newNode.setPointer(curNode);
             curNode.setPointer(newNode);
             return;
@@ -36,7 +42,7 @@ public class LinkedListOrderedList implements IList <User> {
         curNode = curNode.getPointer();
 
         while (curNode != null) {
-            if (curNode.getElement().compareTo(newUser) < 0) {
+            if (curNode.getElement().compareTo(newUser) > 0) {
                 prevNode.setPointer(newNode);
                 newNode.setPointer(curNode);
                 return;
@@ -49,9 +55,14 @@ public class LinkedListOrderedList implements IList <User> {
         return;
     }
 
+    /**
+     *
+     * @param userName String
+     * @return boolean
+     */
     @Override
     public boolean remove(String userName) {
-        reset();
+        LinkedListNode <User> curNode = head;
 
         if(isEmpty()) {
             return false;
@@ -77,6 +88,11 @@ public class LinkedListOrderedList implements IList <User> {
         return false;
     }
 
+    /**
+     *
+     * @param userName String
+     * @return boolean
+     */
     @Override
     public boolean contains(String userName) {
 
@@ -86,6 +102,10 @@ public class LinkedListOrderedList implements IList <User> {
         return false;
     }
 
+    /**
+     *
+     * @return boolean
+     */
     @Override
     public boolean isEmpty() {
         if (head == null) {
@@ -94,9 +114,13 @@ public class LinkedListOrderedList implements IList <User> {
         return false;
     }
 
+    /**
+     *
+     * @return int
+     */
     @Override
     public int size() {
-        reset();
+        LinkedListNode <User> curNode = head;
 
         if (isEmpty()) {
             return 0;
@@ -112,7 +136,8 @@ public class LinkedListOrderedList implements IList <User> {
     }
 
     public User get(String userName) {
-        reset();
+        LinkedListNode <User> curNode = head;
+
         if(isEmpty()) {
             return null;
         }
@@ -135,18 +160,27 @@ public class LinkedListOrderedList implements IList <User> {
 
     @Override
     public void reset() {
-        this.curNode = this.head;
+        this.currentNode = this.head;
     }
 
+    /**
+     *
+     * @return User
+     */
     @Override
     public User getNext() {
-        curNode = curNode.getPointer();
-        return curNode.getElement();
+        reset();
+        currentNode = currentNode.getPointer();
+        return currentNode.getElement();
     }
 
+    /**
+     *
+     * @return String
+     */
     @Override
     public String toString() {
-        reset();
+        LinkedListNode <User> curNode = head;
 
         String list = "";
         while (curNode != null) {

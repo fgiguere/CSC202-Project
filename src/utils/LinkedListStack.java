@@ -6,12 +6,17 @@ import java.io.Serializable;
 
 
 /**
- * Created by faith on 7/6/16.
+ * LinkedListStack
  */
 
 public class LinkedListStack <T> implements ILinkedListStack <LinkedListNode>, Serializable {
     LinkedListNode top;
 
+    /**
+     *
+     * @return LinkedListNode
+     * @throws UnderflowException
+     */
     @Override
     public LinkedListNode top() throws UnderflowException {
         if (isEmpty()) {
@@ -20,7 +25,11 @@ public class LinkedListStack <T> implements ILinkedListStack <LinkedListNode>, S
         return top;
     }
 
-
+    /**
+     *
+     * @return LinkedListNode
+     * @throws UnderflowException
+     */
     @Override
     public LinkedListNode pop() throws UnderflowException {
         if (isEmpty()) {
@@ -32,12 +41,20 @@ public class LinkedListStack <T> implements ILinkedListStack <LinkedListNode>, S
         return oldTop;
     }
 
+    /**
+     *
+     * @param newNode LinkedListNode
+     */
     @Override
     public void push(LinkedListNode newNode) {
         newNode.setPointer(top); //Set pointer of new node to the current top of stack
         top = newNode; //Set the new top of stack to the new node
     }
 
+    /**
+     *
+     * @return boolean
+     */
     @Override
     public boolean isEmpty() {
         if (top == null) { //If there is no node set to the top, then the stack is empty
@@ -47,6 +64,10 @@ public class LinkedListStack <T> implements ILinkedListStack <LinkedListNode>, S
         }
     }
 
+    /**
+     *
+     * @return int
+     */
     @Override
     public int size() {
         if (isEmpty()) { //If empty, return size as 0
@@ -65,6 +86,10 @@ public class LinkedListStack <T> implements ILinkedListStack <LinkedListNode>, S
         return count; //return the total count after while loop
     }
 
+    /**
+     *
+     * @return String
+     */
     public String toString() {
         LinkedListNode<T> current = null;
         try {

@@ -9,6 +9,7 @@ import model.*;
 
 import java.io.IOException;
 
+import utils.LinkedListOrderedList;
 import utils.LinkedListStack;
 //import utils.OrderedList;
 
@@ -25,7 +26,7 @@ public class LoginJavaFXView extends Application {
 
     public void loadUserDB() {
         try {
-            UserDB.setUsers((LinkedListStack) UserIO.readUsers());
+            UserDB.setUsers((LinkedListOrderedList) UserIO.readUsers());
         } catch (IOException e) {
             System.err.print("Failed to open/read users.dat file.");
         } catch (ClassNotFoundException e) {

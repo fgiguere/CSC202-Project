@@ -1,13 +1,13 @@
 package model;
 
-import utils.LinkedListStack;
+import utils.LinkedListOrderedList;
 
 public class UserDB {
 
-    private static LinkedListStack users = new LinkedListStack();
+    private static LinkedListOrderedList users = new LinkedListOrderedList();
 
-    public static LinkedListStack getUsers() {return users;}
+    public static LinkedListOrderedList getUsers() {return users;}
 
-    public static void setUsers(LinkedListStack users) {UserDB.users = users;}
+    public static void setUsers(LinkedListOrderedList users) {UserDB.users = users;}
 
 }

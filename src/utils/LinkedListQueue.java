@@ -7,7 +7,7 @@ import java.io.Serializable;
 import model.User;
 
 /**
- * Created by faith on 7/6/16.
+ * LinkedListQueue
  */
 public class LinkedListQueue <T> implements ILinkedListQueue <LinkedListNode>, Serializable  {
     LinkedListNode <T> head;

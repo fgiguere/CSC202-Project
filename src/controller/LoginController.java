@@ -16,44 +16,18 @@ public class LoginController {
     @FXML
     PasswordField password;
 
-    @FXML
-    TextField removeUser;
-
 public void authenticate() {
-    LinkedListNode <User> temp = null;
-
-    try {
-         temp = UserDB.getUsers().top();
-
-    } catch (UnderflowException e) {
-        e.printStackTrace();
-    }
-
-    User userTemp = temp.getElement();
-    User user = null;
-
-    for(int i = 0; i < UserDB.getUsers().size(); i++) {
-        if(userTemp.getUserName().equals(userName.getText())) {
-            user = userTemp;
-        }
-        temp = temp.getPointer();
-        if (temp != null) {
-            userTemp = temp.getElement();
-        }
-    }
-
-    if (user == null) {
-        System.out.println("User not found.");
-    }
-    else {
-        if(user.getPassword().equals(password.getText())) {
+    if(UserDB.getUsers().contains(userName.getText())) {
+        if(UserDB.getUsers().get(userName.getText()).getPassword().equals(password.getText())) {
             System.out.println("Welcome " + userName.getText());
         }
         else {
-            System.out.println("Password is incorrect.");
+            System.out.println("Password is incorrect");
         }
     }
-
+    else {
+        System.out.println("Username not found.");
+    }
 }
 
 public void openSignupView() throws IOException {

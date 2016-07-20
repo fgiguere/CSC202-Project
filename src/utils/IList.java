@@ -1,16 +1,41 @@
 package utils;
 
 /**
- * Created by faith on 7/11/16.
+ * Interface for List
  */
 
 public interface IList <T> {
+
+    /**
+     *
+     * @param element T
+     */
     void add(T element);
-    boolean remove(String userName);
-    boolean contains(String userName);
+
+    /**
+     *
+     * @return boolean
+     */
     boolean isEmpty();
+
+    /**
+     *
+     * @return int
+     */
     int size();
+
+
     void reset();
+
+    /**
+     *
+     * @return T
+     */
     T getNext();
+
+    /**
+     *
+     * @return String
+     */
     String toString();
 }

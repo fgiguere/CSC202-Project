@@ -3,12 +3,39 @@ package utils;
 import Exceptions.UnderflowException;
 
 /**
- * Created by faith on 7/6/16.
+ * Interface for Stack
  */
 public interface IStack<T> {
+
+    /**
+     *
+     * @return T
+     * @throws UnderflowException
+     */
     T top() throws UnderflowException;
+
+    /**
+     *
+     * @return T
+     * @throws UnderflowException
+     */
     T pop() throws UnderflowException;
+
+    /**
+     *
+     * @return boolean
+     */
     boolean isEmpty();
+
+    /**
+     *
+     * @return int
+     */
     int size();
+
+    /**
+     *
+     * @return String
+     */
     String toString();
 }

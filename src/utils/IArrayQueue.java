@@ -1,8 +1,13 @@
 package utils;
 
 /**
- * Created by faith on 7/6/16.
+ * Interface for ArrayQueue, extends IQueue
  */
 public interface IArrayQueue <T> extends IQueue <T> {
+
+    /**
+     *
+     * @return boolean
+     */
     boolean isFull();
 }

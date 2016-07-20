@@ -6,51 +6,128 @@ import org.junit.Assert;
 import org.junit.Test;
 import utils.LinkedListOrderedList;
 
+import static org.junit.Assert.*;
+
 /**
- * Created by faith on 7/17/16.
+ * Created by faith on 7/19/16.
  */
 public class LinkedListOrderedListTest {
     @Test
-    public void testLinkedListOrderedList() throws Exception {
-        //add, remove, contains, isEmpty, size, get, toString, reset, getNext
-        //Create test data and new list
-        User A = new User("User_1","Pass_1");
-        User B = new User("User_2","Pass_2");
-        User C = new User("User_3","Pass_3");
-        User D = new User("User_4","Pass_4");
-
+    public void add() throws Exception {
         LinkedListOrderedList list = new LinkedListOrderedList();
 
-        //Test isEmpty
-
-        Assert.assertTrue(list.isEmpty());
-
-        //Test add, contains, get, size
+        User A = new User("A","A");
 
         list.add(A);
 
-        Assert.assertTrue(list.contains("User_1"));
-        Assert.assertFalse(list.contains("User_2"));
+        Assert.assertTrue(list.contains("A"));
+    }
 
-        User test = list.get("User_1");
+    @Test
+    public void remove() throws Exception {
+        LinkedListOrderedList list = new LinkedListOrderedList();
 
-        Assert.assertEquals(A,test);
+        User A = new User("A","A");
 
-        Assert.assertEquals(1,list.size());
+        list.add(A);
 
-        //Test remove
+        Assert.assertTrue(list.remove("A"));
+    }
 
-        Assert.assertTrue(list.remove("User_1"));
+    @Test
+    public void contains() throws Exception {
+        LinkedListOrderedList list = new LinkedListOrderedList();
+
+        User A = new User("A","A");
+
+        list.add(A);
+
+        Assert.assertTrue(list.contains("A"));
+    }
+
+    @Test
+    public void isEmpty() throws Exception {
+        LinkedListOrderedList list = new LinkedListOrderedList();
+
         Assert.assertTrue(list.isEmpty());
 
-        //Test toString, and ordering of usernames
+        User A = new User("A","A");
 
-        list.add(D);
+        list.add(A);
+
+        Assert.assertFalse(list.isEmpty());
+    }
+
+    @Test
+    public void size() throws Exception {
+        LinkedListOrderedList list = new LinkedListOrderedList();
+
+        Assert.assertEquals(0, list.size());
+
+        User A = new User("A","A");
+
+        list.add(A);
+
+        Assert.assertEquals(1, list.size());
+    }
+
+    @Test
+    public void get() throws Exception {
+        LinkedListOrderedList list = new LinkedListOrderedList();
+
+        User A = new User("A","A");
+
+        list.add(A);
+
+        Assert.assertEquals(A, list.get("A"));
+    }
+
+    @Test
+    public void reset() throws Exception {
+        LinkedListOrderedList list = new LinkedListOrderedList();
+
+        User A = new User("A","A");
+        User B = new User("B","B");
+        User C = new User("C","C");
+
+        list.add(A);
         list.add(B);
         list.add(C);
-        //list.add(A);
 
-        Assert.assertThat(list.toString(), CoreMatchers.is("Username: User_1\nUsername: User_2\nUsername: User_3\nUsername: User_4\n"));
+        Assert.assertEquals(B, list.getNext());
+        list.getNext();
 
+        list.reset();
+
+        Assert.assertEquals(B, list.getNext());
     }
+
+    @Test
+    public void getNext() throws Exception {
+        LinkedListOrderedList list = new LinkedListOrderedList();
+
+        User A = new User("A","A");
+        User B = new User("B","B");
+
+        list.add(A);
+        list.add(B);
+
+        Assert.assertEquals(B, list.getNext());
+    }
+
+    @Test
+    public void toStringTest() throws Exception {
+        LinkedListOrderedList list = new LinkedListOrderedList();
+
+        User A = new User("A","A");
+        User B = new User("B","B");
+        User C = new User("C","C");
+
+        list.add(C);
+        list.add(B);
+        list.add(A);
+
+        Assert.assertThat(list.toString(), CoreMatchers.is("Username: A\nUsername: B\nUsername: C\n"));
+    }
+
 }

@@ -57,24 +57,15 @@ public class SignUpController {
         String path = fc.showOpenDialog(browse).getAbsolutePath();
 
         photo = path;
-        System.out.println(photo);
+       System.out.println(photo);
     }
 
     public void createAccount() {
         boolean pass = true;
 
-        LinkedListNode <User> temp = null;
-        try {
-            temp = UserDB.getUsers().top();
-        } catch (UnderflowException e) {
-        }
-
-        for(int i = 0; i < UserDB.getUsers().size(); i++) {
-            if (temp.getElement().getUserName().equals(userName.getText())) {
-                pass = false;
-                System.out.println("Username already exists.");
-            }
-            temp = temp.getPointer();
+        if (UserDB.getUsers().contains(userName.getText())) {
+            pass = false;
+            System.out.println("Username already exists.");
         }
 
         if((firstName.getText().isEmpty() || lastName.getText().isEmpty() || dob.getText().isEmpty() || gender.getText().isEmpty() || userName.getText().isEmpty() || password.getText().isEmpty() || confirm.getText().isEmpty())) {
@@ -122,8 +113,7 @@ public class SignUpController {
 
         if(pass == true){
             User user = new User(firstName.getText(), lastName.getText(), Integer.parseInt(SSN.getText()), dob.getText(), gender.getText(), userName.getText(), email.getText(), pNumber.getText(), password.getText(), photo);
-            LinkedListNode newNode = new LinkedListNode(user);
-            UserDB.getUsers().push(newNode);
+            UserDB.getUsers().add(user);
 
             try{
                 UserIO.writeUsers(UserDB.getUsers());
