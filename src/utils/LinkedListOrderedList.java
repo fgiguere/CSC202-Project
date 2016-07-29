@@ -6,6 +6,10 @@ import java.io.Serializable;
  * LinkedListOrderedList
  */
 
+//Chose to implement this in the actual project for the users because it is unbounded, and a binary search could be implemented
+    //since the objects are in ordered by username, which is faster than the others which are not sorted and could only be
+    //searched linearly.
+
 public class LinkedListOrderedList implements IOrderedList, Serializable {
 
     LinkedListNode <User> head = null;
@@ -30,6 +34,10 @@ public class LinkedListOrderedList implements IOrderedList, Serializable {
             return;
         }
 
+        if(head.getElement().equals(newUser)) {
+            System.out.println("Object already in list.");
+        }
+
         LinkedListNode <User> curNode = head;
 
         if (curNode.getElement().compareTo(newUser) > 0) {
@@ -46,6 +54,9 @@ public class LinkedListOrderedList implements IOrderedList, Serializable {
                 prevNode.setPointer(newNode);
                 newNode.setPointer(curNode);
                 return;
+            }
+            if(curNode.getElement().equals(newUser)) {
+                System.out.println("Object already in list.");
             }
             prevNode = curNode;
             curNode = curNode.getPointer();

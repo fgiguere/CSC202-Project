@@ -9,7 +9,7 @@ import utils.LinkedListQueue;
 import static org.junit.Assert.*;
 
 /**
- * Created by faith on 7/19/16.
+ * Tests Linked List Queue
  */
 public class LinkedListQueueTest<T> {
 

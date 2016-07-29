@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<SplitPane dividerPositions="0.09296482412060302" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HospitalListController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <TextField fx:id="search" prefHeight="195.0" prefWidth="598.0" promptText="Enter Hospital Latitude and Longitude" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TextField>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <TableView fx:id="hospitalTable" prefHeight="195.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TableColumn fx:id="hospitalName" prefWidth="100.0" text="Hospital Name" />
+                <TableColumn fx:id="streetAddress" prefWidth="75.0" text="Street Address" />
+                <TableColumn fx:id="city" prefWidth="50.0" text="City" />
+                <TableColumn fx:id="state" prefWidth="50.0" text="State" />
+                <TableColumn fx:id="zip" prefWidth="50.0" text="Zip" />
+                <TableColumn fx:id="latitude" prefWidth="75.0" text="Latitude" />
+                <TableColumn fx:id="longitude" prefWidth="75.0" text="Longitude" />
+                <TableColumn fx:id="pNumber" prefWidth="75.0" text="Phone Number" />
+                <TableColumn fx:id="photo" prefWidth="75.0" text="Photo" />
+              </columns>
+            </TableView>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

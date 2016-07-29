@@ -84,5 +84,4 @@ public class User extends Person implements Serializable {
     public String toString() {
         return "Username: " + this.userName;
     }
-
 }
